@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Page Creation with Specific Elements</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="information">
+    <h1 data-testid="slackUserName"></h1>
+    <img src="images/profile.jpg" alt="Your Slack Username" data-testid="slackDisplayImage">
+    <p data-testid="currentDayOfTheWeek"></p>
+    <p data-testid="currentUTCTime"></p>
+    <p data-testid="myTrack">Frontend Developer</p>
+    <a data-testid="githubURL" href=""></a>
+</div>
+
+<script>
+  function updateCurrentTime() {
+    const currentTimeElement = document.querySelector('[data-testid="currentUTCTime"]');
+    const currentDate = new Date();
+    const utcTimeString = currentDate.toUTCString();
+    console.log(`Current UTC Time: ${utcTimeString}`); 
+    currentTimeElement.textContent = `Current UTC Time: ${utcTimeString}`;
+  }
+  
+  function updateDayOfTheWeek() {
+    const dayElement = document.querySelector('[data-testid="currentDayOfTheWeek"]');
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const currentDate = new Date();
+    const dayOfWeek = daysOfWeek[currentDate.getUTCDay()];
+    dayElement.textContent = `Current Day of the Week: ${dayOfWeek}`;
+  }
+  
+  window.onload = () => {
+    updateCurrentTime();
+    updateDayOfTheWeek();
+  };
+  
+  document.querySelector('[data-testid="slackUserName"]').textContent = 'Bayat';
+  document.querySelector('[data-testid="slackDisplayImage"]').src = 'images/profile.jpg';
+  document.querySelector('[data-testid="myTrack"]').textContent = 'Frontend Developer';
+  document.querySelector('[data-testid="githubURL"]').textContent = 'link to GitHub repository';
+
+
+</script>
+</body>
+</html>
